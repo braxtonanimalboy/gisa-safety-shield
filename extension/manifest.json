@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "GISA — Safety Shield",
+  "version": "2.0.0",
+  "description": "Automatically blocks trafficking, scams, phishing, grooming, and malware.",
+
+  "permissions": [
+    "webNavigation",
+    "tabs",
+    "storage",
+    "notifications"
+  ],
+
+  "host_permissions": [
+    "<all_urls>",
+    "http://localhost:8000/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "GISA Safety Shield"
+  },
+
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["blocked.html", "setup.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

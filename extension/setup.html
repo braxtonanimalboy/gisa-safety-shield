@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GISA — Setup</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.container{max-width:520px;width:100%;padding:40px 32px}
+.logo{font-size:56px;text-align:center;margin-bottom:16px}
+h1{font-size:26px;font-weight:700;text-align:center;margin-bottom:6px}
+.sub{font-size:13px;color:#555;text-align:center;font-family:monospace;margin-bottom:40px}
+.step{display:none}.step.active{display:block}
+.step-indicator{display:flex;justify-content:center;gap:8px;margin-bottom:32px}
+.dot{width:8px;height:8px;border-radius:50%;background:#222;transition:background 0.3s}
+.dot.active,.dot.done{background:#1d9e75}
+.card{background:#111;border-radius:14px;padding:28px;border:1px solid #1a1a1a;margin-bottom:20px}
+.card h2{font-size:16px;font-weight:700;margin-bottom:6px}
+.card p{font-size:13px;color:#666;line-height:1.6;margin-bottom:20px}
+label{display:block;font-size:12px;color:#666;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;margin-top:16px}
+input[type=password]{width:100%;background:#0a0a0a;border:1px solid #333;border-radius:8px;color:#fff;padding:10px 14px;font-size:14px;outline:none}
+input:focus{border-color:#1d9e75}
+.strength{height:4px;border-radius:2px;margin-top:6px;background:#222;transition:all 0.3s}
+.strength-text{font-size:11px;color:#555;margin-top:4px}
+.toggle-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #1a1a1a}
+.toggle-row:last-child{border-bottom:none}
+.toggle-info h3{font-size:14px;font-weight:600}
+.toggle-info p{font-size:11px;color:#555;margin-top:2px}
+.toggle{width:44px;height:24px;background:#1d9e75;border-radius:12px;position:relative;cursor:pointer;transition:background 0.2s;flex-shrink:0}
+.toggle.off{background:#333}
+.toggle::after{content:"";position:absolute;width:20px;height:20px;background:#fff;border-radius:50%;top:2px;left:22px;transition:left 0.2s}
+.toggle.off::after{left:2px}
+.btn{width:100%;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;border:none;margin-top:16px}
+.btn-primary{background:#1d9e75;color:#fff}
+.btn-secondary{background:#1a1a1a;color:#888;border:1px solid #333;margin-top:8px}
+.error{background:#2a0000;border:1px solid #5a0000;border-radius:8px;padding:10px 14px;font-size:13px;color:#ff6666;margin-top:12px;display:none}
+.success{background:#002a10;border:1px solid #005a20;border-radius:8px;padding:10px 14px;font-size:13px;color:#44ff88;margin-top:12px;display:none}
+.check-item{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:14px;color:#666}
+.check-item.done{color:#1d9e75}
+.check-icon{width:20px;height:20px;border-radius:50%;border:2px solid #333;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;transition:all 0.3s}
+.check-item.done .check-icon{background:#1d9e75;border-color:#1d9e75;color:#fff}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="logo">🛡</div>
+  <h1>GISA Safety Shield</h1>
+  <div class="sub">SETUP — Built by Braxton Roy, age 13</div>
+  <div class="step-indicator">
+    <div class="dot active" id="dot-1"></div>
+    <div class="dot" id="dot-2"></div>
+    <div class="dot" id="dot-3"></div>
+  </div>
+
+  <div class="step active" id="step-1">
+    <div class="card">
+      <h2>👋 Welcome to GISA</h2>
+      <p>Create a parental control password. This is needed to change safety settings or disable any protections.</p>
+      <label>Create Password</label>
+      <input type="password" id="password" placeholder="Enter a strong password" />
+      <div class="strength" id="strength-bar"></div>
+      <div class="strength-text" id="strength-text"></div>
+      <label>Confirm Password</label>
+      <input type="password" id="password2" placeholder="Confirm your password" />
+      <div class="error" id="step1-error"></div>
+      <button class="btn btn-primary" id="step1-next">Next →</button>
+    </div>
+  </div>
+
+  <div class="step" id="step-2">
+    <div class="card">
+      <h2>🛡 Choose Your Protection</h2>
+      <p>Select what GISA should block. You can change these later from the dashboard.</p>
+      <div class="toggle-row">
+        <div class="toggle-info"><h3>🚨 Trafficking and Grooming</h3><p>Blocks sites linked to human trafficking and predatory contact</p></div>
+        <div class="toggle" id="t-trafficking"></div>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-info"><h3>⚠️ Scams and Phishing</h3><p>Blocks fake sites stealing passwords and money</p></div>
+        <div class="toggle" id="t-scams"></div>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-info"><h3>🚨 Malware</h3><p>Blocks sites that install viruses on your computer</p></div>
+        <div class="toggle" id="t-malware"></div>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-info"><h3>🔞 Adult Content</h3><p>Blocks pornography and adult content sites</p></div>
+        <div class="toggle off" id="t-adult"></div>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-info"><h3>🎮 Gaming Scams</h3><p>Blocks fake Robux, V-Bucks, Discord Nitro scam sites</p></div>
+        <div class="toggle" id="t-gaming"></div>
+      </div>
+      <button class="btn btn-primary" id="step2-next">Next →</button>
+      <button class="btn btn-secondary" id="step2-back">← Back</button>
+    </div>
+  </div>
+
+  <div class="step" id="step-3">
+    <div class="card">
+      <h2>✅ Setting Up GISA</h2>
+      <p>Configuring your safety settings...</p>
+      <div class="check-item" id="check-api"><div class="check-icon">1</div><span>Connecting to GISA API...</span></div>
+      <div class="check-item" id="check-password"><div class="check-icon">2</div><span>Setting up parental password...</span></div>
+      <div class="check-item" id="check-blockers"><div class="check-icon">3</div><span>Configuring protection settings...</span></div>
+      <div class="check-item" id="check-done"><div class="check-icon">4</div><span>All done!</span></div>
+      <div class="error" id="step3-error"></div>
+      <div class="success" id="step3-success"></div>
+      <button class="btn btn-primary" id="go-dashboard" style="display:none">Open Dashboard →</button>
+    </div>
+  </div>
+</div>
+<script src="setup.js"></script>
+</body>
+</html>

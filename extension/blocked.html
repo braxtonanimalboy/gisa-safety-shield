@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GISA — Site Blocked</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.container{max-width:600px;padding:48px 32px;text-align:center}
+.shield{font-size:80px;margin-bottom:24px;display:block}
+.title{font-size:32px;font-weight:700;color:#e24b4a;margin-bottom:8px}
+.domain{font-size:18px;color:#888;font-family:monospace;margin-bottom:24px;word-break:break-all}
+.badge{display:inline-block;padding:8px 20px;border-radius:20px;font-size:14px;font-weight:700;text-transform:uppercase;margin-bottom:28px;background:#3a0000;color:#ff6666;border:1px solid #7c0000}
+.hotline{background:#1a0000;border:1px solid #7c0000;border-radius:12px;padding:20px 24px;margin-bottom:28px;font-size:15px;color:#ffaaaa;text-align:left;line-height:1.8;display:none}
+.reasons{background:#1a1a1a;border-radius:12px;padding:16px 20px;margin-bottom:28px;text-align:left;display:none}
+.reasons h3{font-size:12px;text-transform:uppercase;color:#555;margin-bottom:10px}
+.reason{font-size:14px;color:#ccc;margin-bottom:6px}
+.score-bar{background:#1a1a1a;border-radius:12px;padding:16px 24px;margin-bottom:32px}
+.score-label{display:flex;justify-content:space-between;font-size:13px;color:#666;margin-bottom:8px}
+.bar{height:10px;background:#333;border-radius:5px;overflow:hidden}
+.bar-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,#e24b4a,#ff0000);width:0%;transition:width 0.8s ease}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{padding:14px 28px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;border:none}
+.btn-back{background:#1d9e75;color:#fff}
+.btn-report{background:transparent;color:#e24b4a;border:2px solid #e24b4a}
+.credit{margin-top:40px;font-size:12px;color:#333}
+</style>
+</head>
+<body>
+<div class="container">
+  <span class="shield">🛡</span>
+  <h1 class="title">Site Blocked</h1>
+  <p class="domain" id="domain-display">unknown domain</p>
+  <div class="badge" id="badge">THREAT DETECTED</div>
+  <div class="hotline" id="hotline">
+    <strong style="color:#ff4444;font-size:16px">⚠️ This site may be linked to human trafficking.</strong><br><br>
+    If you or someone you know needs help:<br>
+    National Human Trafficking Hotline<br>
+    <strong>1-888-373-7888</strong> — Free, 24/7, Confidential<br>
+    Or text <strong>HELP</strong> to <strong>233733</strong>
+  </div>
+  <div class="reasons" id="reasons-box">
+    <h3>Why was this blocked?</h3>
+    <div id="reasons-list"></div>
+  </div>
+  <div class="score-bar">
+    <div class="score-label"><span>Threat Level</span><span id="score-display">--</span></div>
+    <div class="bar"><div class="bar-fill" id="bar-fill"></div></div>
+  </div>
+  <div class="actions">
+    <button class="btn btn-back" id="btn-back">← Go Back to Safety</button>
+    <button class="btn btn-report" id="btn-report">🚩 Report This Site</button>
+  </div>
+  <div class="credit">Protected by <span style="color:#555">GISA Safety Shield</span></div>
+</div>
+<script src="blocked.js"></script>
+</body>
+</html>

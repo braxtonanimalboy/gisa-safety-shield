@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: gisa
+      POSTGRES_PASSWORD: gisa_dev_pw
+      POSTGRES_DB: gisa
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gisa"]
+      interval: 10s
+      retries: 5
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6380:6379"
+  api:
+    build:
+      context: ./backend
+    ports:
+      - "8001:8000"
+    volumes:
+      - gisa_data:/app/data
+    environment:
+      DATABASE_URL: postgresql+asyncpg://gisa:gisa_dev_pw@db:5432/gisa
+      REDIS_URL: redis://redis:6379/0
+      JWT_SECRET: change_me_in_production_min_32_chars_ok
+      DATA_DIR: /app/data
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  gisa_data:

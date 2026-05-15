@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GISA Safety Shield</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:320px;font-family:-apple-system,sans-serif;background:#0f0f0f;color:#fff}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e);padding:16px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #222}
+.shield-icon{font-size:28px}
+.header-text h1{font-size:15px;font-weight:700}
+.header-text p{font-size:10px;color:#555;margin-top:2px;font-family:monospace}
+.status-bar{padding:8px 16px;background:#0a2010;border-bottom:1px solid #1a3020;display:flex;align-items:center;gap:8px;font-size:12px;color:#1d9e75;font-weight:600;font-family:monospace}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#1d9e75;animation:blink 2s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#222;border-bottom:1px solid #222}
+.stat{background:#111;padding:12px 8px;text-align:center}
+.stat-number{font-size:22px;font-weight:700}
+.stat-number.red{color:#e24b4a}.stat-number.green{color:#1d9e75}.stat-number.yellow{color:#ba7517}
+.stat-label{font-size:9px;color:#555;margin-top:2px;font-family:monospace;text-transform:uppercase}
+.current-site{padding:12px 16px;border-bottom:1px solid #1a1a1a}
+.current-label{font-size:10px;color:#555;font-family:monospace;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px}
+.site-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.site-info{flex:1;min-width:0}
+.current-domain{font-family:monospace;font-size:13px;color:#ccc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.current-verdict{font-size:11px;margin-top:2px;font-family:monospace}
+.block-site-btn{padding:7px 12px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:none;white-space:nowrap;flex-shrink:0;display:none}
+.block-site-btn.block{background:#e24b4a;color:#fff}
+.block-site-btn.unblock{background:#1d9e75;color:#fff}
+.scan-section{padding:14px 16px;border-bottom:1px solid #1a1a1a}
+.scan-label{font-size:10px;color:#555;font-family:monospace;text-transform:uppercase;letter-spacing:0.04em;display:block;margin-bottom:8px}
+.scan-row{display:flex;gap:8px}
+.scan-input{flex:1;background:#1a1a1a;border:1px solid #333;border-radius:6px;color:#fff;padding:8px 10px;font-size:13px;font-family:monospace;outline:none}
+.scan-btn{background:#1d9e75;color:#fff;border:none;border-radius:6px;padding:8px 12px;font-size:13px;font-weight:600;cursor:pointer}
+.scan-result{margin-top:10px;padding:10px 12px;border-radius:6px;font-size:12px;display:none;white-space:pre-line}
+.result-blocked{background:#2a0000;color:#ff6666;border:1px solid #5a0000}
+.result-warning{background:#2a1800;color:#ffaa44;border:1px solid #5a3000}
+.result-allowed{background:#002a10;color:#44ff88;border:1px solid #005a20}
+.result-unknown{background:#1a1a1a;color:#888;border:1px solid #333}
+.nav-buttons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:12px 16px;border-bottom:1px solid #1a1a1a}
+.nav-btn{padding:9px 6px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;border:none;text-align:center}
+.nav-btn-dashboard{background:#1d9e75;color:#fff}
+.nav-btn-blocklist{background:#e24b4a;color:#fff}
+.nav-btn-setup{background:#222;color:#aaa;border:1px solid #333}
+.footer{padding:10px 16px;display:flex;justify-content:space-between;align-items:center}
+.api-status{font-size:10px;font-family:monospace;color:#333}
+.api-online{color:#1d9e75}.api-offline{color:#e24b4a}
+</style>
+</head>
+<body>
+<div class="header">
+  <span class="shield-icon">🛡</span>
+  <div class="header-text"><h1>GISA Safety Shield</h1><p>MILITARY GRADE PROTECTION</p></div>
+</div>
+<div class="status-bar">
+  <div class="status-dot"></div>
+  <span id="status-text">PROTECTION ACTIVE</span>
+</div>
+<div class="stats">
+  <div class="stat"><div class="stat-number red" id="stat-blocked">0</div><div class="stat-label">Blocked</div></div>
+  <div class="stat"><div class="stat-number green" id="stat-scanned">0</div><div class="stat-label">Scanned</div></div>
+  <div class="stat"><div class="stat-number yellow" id="stat-warnings">0</div><div class="stat-label">Warnings</div></div>
+</div>
+<div class="current-site">
+  <div class="current-label">Current Site</div>
+  <div class="site-row">
+    <div class="site-info">
+      <div class="current-domain" id="current-domain">Loading...</div>
+      <div class="current-verdict" id="current-verdict"></div>
+    </div>
+    <button class="block-site-btn block" id="block-site-btn">🚫 Block</button>
+  </div>
+</div>
+<div class="scan-section">
+  <label class="scan-label">Scan Any Domain</label>
+  <div class="scan-row">
+    <input type="text" class="scan-input" id="scan-input" placeholder="example.com" />
+    <button class="scan-btn" id="scan-btn">Scan</button>
+  </div>
+  <div class="scan-result" id="scan-result"></div>
+</div>
+<div class="nav-buttons">
+  <button class="nav-btn nav-btn-dashboard" id="open-dashboard">📊 Dashboard</button>
+  <button class="nav-btn nav-btn-blocklist" id="open-blocklist">🚫 My Blocks</button>
+  <button class="nav-btn nav-btn-setup" id="open-setup">⚙️ Setup</button>
+</div>
+<div class="footer">
+  <span class="api-status" id="api-status">● checking...</span>
+  <span style="font-size:10px;color:#333">Braxton Roy, age 13</span>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>
