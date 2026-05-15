@@ -238,7 +238,7 @@ PHISHING=["paypal-secure","paypal-verify","apple-verify","apple-secure","amazon-
 MALWARE=["malware","exploit-kit","ransomware","trojan-","virus-download","crack-download","keygen-download","free-hack","nulled-","warez-","payload-","dropper-","botnet-","rat-download","keylogger-","stealer-","spy-on-phone","install-spyware-remotely","rootkit-","cryptominer-"]
 EXTREMISM=["join-isis","jihad-recruitment","terror-network","white-supremacy-join","hate-group-recruit","extremist-forum-","radicalization-","neo-nazi-join"]
 HIGH_RISK_TLDS={".tk",".ml",".ga",".cf",".gq",".pw",".cc",".xyz",".top",".click",".download",".zip",".review",".country",".science",".work"}
-SAFE_DOMAINS={"google.com","accounts.google.com","googleapis.com","gstatic.com","youtube.com","wikipedia.org","wiktionary.org","wikimedia.org","khanacademy.org","nih.gov","cdc.gov","bbc.com","reuters.com","amazon.com","apple.com","microsoft.com","paypal.com","chase.com","claude.ai","anthropic.com","discord.com","roblox.com","minecraft.net","steampowered.com","netflix.com","spotify.com","github.com","netlify.com","netlify.app","app.netlify.com","create.netlify.com","stackoverflow.com","reddit.com","twitter.com","x.com","linkedin.com","twitch.tv","imgur.com","mozilla.org","zoom.us","office.com","outlook.com","instagram.com","facebook.com","tiktok.com","snapchat.com","pinterest.com","ebay.com","walmart.com","webmd.com","mayoclinic.org","duolingo.com","quizlet.com","edx.org","coursera.org"}
+SAFE_DOMAINS={"google.com","accounts.google.com","docs.google.com","drive.google.com","sheets.google.com","slides.google.com","forms.google.com","mail.google.com","googleapis.com","gstatic.com","youtube.com","wikipedia.org","wiktionary.org","wikimedia.org","khanacademy.org","nih.gov","cdc.gov","bbc.com","reuters.com","amazon.com","apple.com","microsoft.com","paypal.com","chase.com","claude.ai","anthropic.com","discord.com","roblox.com","minecraft.net","steampowered.com","netflix.com","spotify.com","github.com","netlify.com","netlify.app","app.netlify.com","create.netlify.com","stackoverflow.com","reddit.com","twitter.com","x.com","linkedin.com","twitch.tv","imgur.com","mozilla.org","zoom.us","office.com","outlook.com","instagram.com","facebook.com","tiktok.com","snapchat.com","pinterest.com","ebay.com","walmart.com","webmd.com","mayoclinic.org","duolingo.com","quizlet.com","edx.org","coursera.org"}
 
 def check_rate_limit(ip):
     now=time.time()
@@ -836,44 +836,48 @@ body{font-family:-apple-system,sans-serif;background:#0a0a0a;color:#fff;min-heig
 .add-card{background:#111;border-radius:14px;padding:24px;border:1px solid #1a1a1a;margin-bottom:24px}
 .add-card h2{font-size:14px;font-weight:600;margin-bottom:16px;color:#888;font-family:monospace;text-transform:uppercase;letter-spacing:0.05em}
 .add-row{display:flex;gap:10px}
-.add-input{flex:1;background:#0a0a0a;border:1px solid #333;border-radius:8px;color:#fff;padding:10px 14px;font-size:14px;outline:none;transition:border-color 0.2s}
+.add-input{flex:1;background:#0a0a0a;border:1px solid #333;border-radius:8px;color:#fff;padding:10px 14px;font-size:14px;outline:none}
 .add-input:focus{border-color:#e24b4a}
-.add-btn{background:#e24b4a;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap}
-.add-btn:hover{background:#c0392b}
+.add-btn{background:#e24b4a;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer}
 .stats-row{display:flex;gap:12px;margin-bottom:24px}
 .stat-pill{background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:10px 16px;font-size:13px;color:#555;font-family:monospace}
 .stat-pill span{color:#fff;font-weight:700}
 .domain-list{background:#111;border-radius:14px;border:1px solid #1a1a1a;overflow:hidden}
-.domain-item{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid #1a1a1a;transition:background 0.15s}
+.domain-item{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid #1a1a1a}
 .domain-item:last-child{border-bottom:none}
-.domain-item:hover{background:#1a1a1a}
 .domain-left{display:flex;align-items:center;gap:12px}
 .block-icon{width:32px;height:32px;background:#2a0000;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
 .domain-name{font-family:monospace;font-size:14px;font-weight:600}
 .domain-meta{font-size:11px;color:#555;margin-top:2px}
-.remove-btn{background:transparent;border:1px solid #333;color:#555;border-radius:6px;padding:6px 14px;font-size:12px;cursor:pointer;transition:all 0.15s;font-weight:600}
-.remove-btn:hover{border-color:#e24b4a;color:#e24b4a;background:#2a0000}
+.unblock-btn{background:transparent;border:1px solid #333;color:#555;border-radius:6px;padding:6px 14px;font-size:12px;cursor:pointer;font-weight:600}
+.unblock-btn:hover{border-color:#1d9e75;color:#1d9e75}
 .empty{padding:48px;text-align:center;color:#333}
-.empty-icon{font-size:48px;margin-bottom:16px}
-.empty-text{font-size:15px;margin-bottom:8px;color:#555}
-.empty-sub{font-size:13px;color:#333}
-.toast{position:fixed;bottom:24px;right:24px;background:#1d9e75;color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;font-weight:600;opacity:0;transition:opacity 0.3s;pointer-events:none}
+.toast{position:fixed;bottom:24px;right:24px;background:#1d9e75;color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;font-weight:600;opacity:0;transition:opacity 0.3s;pointer-events:none;z-index:999}
 .toast.show{opacity:1}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:100;display:none;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal{background:#111;border:1px solid #333;border-radius:16px;padding:32px;width:400px;text-align:center}
+.modal h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.modal p{font-size:13px;color:#555;margin-bottom:20px}
+.modal-domain{font-family:monospace;color:#e24b4a;font-weight:700;font-size:15px;margin-bottom:20px}
+.pw-input{width:100%;background:#0a0a0a;border:1px solid #333;border-radius:8px;color:#fff;padding:10px 14px;font-size:14px;outline:none;margin-bottom:12px;text-align:center;letter-spacing:0.1em}
+.pw-input:focus{border-color:#1d9e75}
+.modal-btns{display:flex;gap:10px}
+.btn-confirm{flex:1;background:#1d9e75;color:#fff;border:none;border-radius:8px;padding:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn-cancel{flex:1;background:#1a1a1a;color:#888;border:1px solid #333;border-radius:8px;padding:10px;font-size:14px;cursor:pointer}
+.error-msg{color:#e24b4a;font-size:12px;margin-bottom:12px;display:none}
 </style>
 </head>
 <body>
 <div class="header">
-  <div>
-    <h1>🚫 My Blocked Sites</h1>
-    <p>Custom sites you've blocked — saved permanently</p>
-  </div>
+  <div><h1>🚫 My Blocked Sites</h1><p>Custom sites you've blocked — password required to unblock</p></div>
   <a href="/dashboard" class="back-btn">← Dashboard</a>
 </div>
 <div class="container">
   <div class="add-card">
     <h2>Block a New Site</h2>
     <div class="add-row">
-      <input class="add-input" id="add-input" placeholder="Enter domain (e.g. tiktok.com, reddit.com)" />
+      <input class="add-input" id="add-input" placeholder="Enter domain (e.g. tiktok.com)" />
       <button class="add-btn" id="add-btn">+ Block Site</button>
     </div>
   </div>
@@ -882,11 +886,29 @@ body{font-family:-apple-system,sans-serif;background:#0a0a0a;color:#fff;min-heig
     <div class="stat-pill">Status: <span style="color:#1d9e75">Active</span></div>
   </div>
   <div class="domain-list" id="domain-list">
-    <div class="empty"><div class="empty-icon">🛡</div><div class="empty-text">No custom blocks yet</div><div class="empty-sub">Add a site above to block it instantly</div></div>
+    <div class="empty">Loading...</div>
   </div>
 </div>
+
+<!-- Password Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h3>🔐 Parent Password Required</h3>
+    <p>Enter the parent password to unblock:</p>
+    <div class="modal-domain" id="modal-domain"></div>
+    <input type="password" class="pw-input" id="modal-pw" placeholder="Enter password" />
+    <div class="error-msg" id="modal-error">Wrong password. Try again.</div>
+    <div class="modal-btns">
+      <button class="btn-confirm" id="modal-confirm">Unblock</button>
+      <button class="btn-cancel" id="modal-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 <script>
+let pendingDomain = null;
+
 function showToast(msg, color) {
   const t = document.getElementById("toast");
   t.textContent = msg;
@@ -902,34 +924,65 @@ async function loadList() {
     document.getElementById("total-count").textContent = data.total;
     const list = document.getElementById("domain-list");
     if (!data.domains || data.domains.length === 0) {
-      list.innerHTML = '<div class="empty"><div class="empty-icon">🛡</div><div class="empty-text">No custom blocks yet</div><div class="empty-sub">Add a site above to block it instantly</div></div>';
+      list.innerHTML = '<div class="empty">🛡 No custom blocks yet. Add a site above!</div>';
       return;
     }
     list.innerHTML = data.domains.map(d =>
-      '<div class="domain-item" id="item-' + encodeURIComponent(d) + '">' +
-      '<div class="domain-left"><div class="block-icon">🚫</div><div><div class="domain-name">' + d + '</div><div class="domain-meta">Blocked by you</div></div></div>' +
-      '<button class="remove-btn" data-domain="' + d + '">Unblock</button>' +
-      '</div>'
+      '<div class="domain-item"><div class="domain-left"><div class="block-icon">🚫</div><div><div class="domain-name">' + d + '</div><div class="domain-meta">Blocked by you</div></div></div>' +
+      '<button class="unblock-btn" data-domain="' + d + '">Unblock</button></div>'
     ).join("");
-    document.querySelectorAll(".remove-btn").forEach(btn => {
-      btn.addEventListener("click", () => removeDomain(btn.dataset.domain));
+    document.querySelectorAll(".unblock-btn").forEach(btn => {
+      btn.addEventListener("click", () => showModal(btn.dataset.domain));
     });
   } catch(e) {
-    document.getElementById("domain-list").innerHTML = '<div class="empty"><div class="empty-text">Could not connect to GISA API</div><div class="empty-sub">Make sure Docker is running</div></div>';
+    document.getElementById("domain-list").innerHTML = '<div class="empty">Could not connect to GISA API</div>';
   }
 }
 
-async function removeDomain(domain) {
-  const item = document.getElementById("item-" + encodeURIComponent(domain));
-  if (item) { item.style.opacity = "0.4"; item.style.pointerEvents = "none"; }
-  await fetch("/v1/custom-block?domain=" + encodeURIComponent(domain), {method:"DELETE"});
-  showToast("✅ " + domain + " unblocked!", "#1d9e75");
-  loadList();
+function showModal(domain) {
+  pendingDomain = domain;
+  document.getElementById("modal-domain").textContent = domain;
+  document.getElementById("modal-pw").value = "";
+  document.getElementById("modal-error").style.display = "none";
+  document.getElementById("modal").classList.add("show");
+  setTimeout(() => document.getElementById("modal-pw").focus(), 100);
 }
+
+function hideModal() {
+  document.getElementById("modal").classList.remove("show");
+  pendingDomain = null;
+}
+
+document.getElementById("modal-confirm").addEventListener("click", async () => {
+  const pw = document.getElementById("modal-pw").value;
+  if (!pw) return;
+  try {
+    const r = await fetch("/v1/porn-blocker/toggle?password=" + encodeURIComponent(pw) + "&enable=" + (await fetch("/v1/porn-blocker/status").then(r=>r.json())).enabled, {method:"POST"}).then(r=>r.json());
+    if (r.ok) {
+      await fetch("/v1/custom-block?domain=" + encodeURIComponent(pendingDomain), {method:"DELETE"});
+      hideModal();
+      showToast("✅ " + pendingDomain + " unblocked!", "#1d9e75");
+      loadList();
+    } else {
+      document.getElementById("modal-error").style.display = "block";
+      document.getElementById("modal-pw").value = "";
+      document.getElementById("modal-pw").focus();
+    }
+  } catch {
+    document.getElementById("modal-error").style.display = "block";
+  }
+});
+
+document.getElementById("modal-pw").addEventListener("keypress", e => {
+  if (e.key === "Enter") document.getElementById("modal-confirm").click();
+});
+
+document.getElementById("modal-cancel").addEventListener("click", hideModal);
+document.getElementById("modal").addEventListener("click", e => { if(e.target===document.getElementById("modal")) hideModal(); });
 
 document.getElementById("add-btn").addEventListener("click", async () => {
   const val = document.getElementById("add-input").value.trim().replace("www.","").split("/")[0];
-  if (!val || !val.includes(".")) { showToast("Enter a valid domain (e.g. tiktok.com)", "#e24b4a"); return; }
+  if (!val || !val.includes(".")) { showToast("Enter a valid domain", "#e24b4a"); return; }
   await fetch("/v1/custom-block?domain=" + encodeURIComponent(val), {method:"POST"});
   document.getElementById("add-input").value = "";
   showToast("🚫 " + val + " blocked!", "#e24b4a");
